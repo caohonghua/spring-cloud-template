@@ -1,8 +1,0 @@
-spring:
-  cloud:
-    config:
-      name: common,zuul_server
-      profile: dev
-      label: master
-      uri:
-        - http://localhost:9001/
