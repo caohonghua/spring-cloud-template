@@ -1,0 +1,32 @@
+[
+    {
+        "text":"控制台",
+        "value":"/console"
+    },
+    {
+        "text":"工具集",
+        "value":"/tools/"
+    },
+    {
+        "text":"用户",
+        "value":"/"
+    },
+    {
+        "text":"其他系统",
+        "value":"",
+        "children":[
+            {
+                "text":"邮件系统",
+                "value":"/"
+            },
+            {
+                "text":"消息系统",
+                "value":"/"
+            },
+            {
+                "text":"授权系统",
+                "value":"/"
+            }
+        ]
+    }
+]

@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      name: common,web_server
+      profile: dev
+      label: master
+      uri:
+        - http://localhost:9001/

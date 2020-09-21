@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <title>后台系统</title>
+    <link rel="stylesheet" href="/resource/layui/css/layui.css">
+</head>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">后台系统</div>
+        <ul class="layui-nav layui-layout-left" data-th-if="${products} ne null">
+            <li class="layui-nav-item" data-th-each="product : ${products}">
+                <a href="javascript:;" data-th-value="${product.value}" data-th-text="${product.text}"></a>
+                <dl class="layui-nav-child" data-th-if="${product.children} ne null">
+                    <dd data-th-each="child : ${product.children}">
+                        <a href="javascript:;" data-th-value="${child.value}" data-th-text="${child.text}"></a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" data-th-if="${user} eq null"><a href="/sso/login/page">登陆</a></li>
+            <li class="layui-nav-item" data-th-if="${user} eq null"><a target="_blank" href="/user/regPage">注册</a></li>
+            <li class="layui-nav-item" data-th-if="${user} ne null">
+                <a href="javascript:;"><img data-th-src="${user.img}" class="layui-nav-img"/>
+                    <span id="test" data-th-text="${user.username}"></span></a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本信息</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item" data-th-if="${user} ne null">
+                <a href="/user/logout">退了</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree" data-th-if="${resources} ne null">
+                <li class="layui-nav-item" data-th-each="resource : ${resources}">
+                    <a href="javascript:;" data-th-value="${resource.value}" data-th-text="${resource.text}"></a>
+                    <dl class="layui-nav-child" data-th-if="${resource.children} ne null">
+                        <dd data-th-each="child : ${resource.children}">
+                            <a href="javascript:;" data-th-value="${child.value}" data-th-text="${child.text}"></a>
+                        </dd>
+                    </dl>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <div style="padding:20px;height:90%">
+            <iframe id="iframe" src="/" scrolling="auto" frameborder="0" width="100%"
+                    height="100%"></iframe>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        @caohh.org
+    </div>
+</div>
+<script src="/resource/layui/layui.js"></script>
+<script>
+        layui.use(['element','jquery'], function () {
+            var element = layui.element;
+            var $ = layui.jquery;
+            $('a').on('click',function(){
+                var value = $(this).attr('value');
+                if('' !== value){
+                     $('#iframe').attr('src',value);
+                }
+            });
+        });
+</script>
+</body>
+</html>
